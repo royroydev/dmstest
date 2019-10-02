@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tables>
+	
+	<Table name = "Address">
+		<column name="aid" datatype="int" required="true" primaryKey="true"/> 
+		<column name="area" datatype="VARCHAR(50)" required="true" />
+		<column name="state" datatype="VARCHAR(50)" required="false" />
+	</Table>
+	
+	<Table name = "Student">
+		<column name="sid" datatype="int" required="true" primaryKey="true"/> 
+		<column name="sname" datatype="VARCHAR(50)" required="true" />
+		<column name="email" datatype="VARCHAR(50)" required="false" />
+		<column name="aid" datatype="int" required="false" ref_table="Address" ref_col="aid"/>
+	</Table>
+	
+	<Table name = "Employee">
+		<column name="eid" datatype="int" required="true" primaryKey="true"/> 
+		<column name="ename" datatype="VARCHAR(50)" required="true" />
+		<column name="email" datatype="VARCHAR(50)" required="false" />
+	</Table>
+	
+	<AlterTable name = "Employee">
+		<column_add name="aid" datatype="int" required="true" ref_table="Address" ref_col="aid"/> 
+		<column_del name="ename" />
+		<column_upd from_name="email" to_name="to_email" from_type="VARCHAR(50)" to_type="VARCHAR(40)"  />
+	</AlterTable>
+</Tables>
